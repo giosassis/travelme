@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom'
-import { BookOpen, FileText, Download, Settings, ArrowRight, Map } from 'lucide-react'
+import { BookOpen, FileText, Download, Settings, ArrowRight, Map, ShoppingBag } from 'lucide-react'
 
 export default function MaisPage() {
   const { id } = useParams<{ id: string }>()
@@ -12,6 +12,13 @@ export default function MaisPage() {
       description: 'Voos, hospedagens, passeios e mais',
       to: `${base}/reservas`,
       color: 'bg-blue-50 text-blue-600',
+    },
+    {
+      icon: ShoppingBag,
+      label: 'Lista de compras',
+      description: 'O que comprar antes e durante a viagem',
+      to: `${base}/compras`,
+      color: 'bg-orange-50 text-orange-500',
     },
     {
       icon: Map,

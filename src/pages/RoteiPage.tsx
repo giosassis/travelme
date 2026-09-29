@@ -105,6 +105,7 @@ export default function RoteiPage() {
 
       {id && (
         <ActivityForm
+          key={editingItem?.id ?? 'novo'}
           open={formOpen}
           tripId={id}
           initialData={editingItem}

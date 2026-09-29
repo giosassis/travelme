@@ -11,6 +11,7 @@ import { itineraryRepository } from '@/services/storage/itineraryRepository'
 import { checklistRepository } from '@/services/storage/checklistRepository'
 import { reservationRepository } from '@/services/storage/reservationRepository'
 import { noteRepository } from '@/services/storage/noteRepository'
+import { shoppingRepository } from '@/services/storage/shoppingRepository'
 import type { TripBackup } from '@/types'
 
 export default function BackupPage() {
@@ -29,25 +30,27 @@ export default function BackupPage() {
     if (!id || !activeTrip) return
     setExporting(true)
     try {
-      const [expenses, budgetCategories, itinerary, checklist, reservations, notes] = await Promise.all([
-        expenseRepository.getAllByTripId(id),
-        budgetCategoryRepository.getAllByTripId(id),
-        itineraryRepository.getAllByTripId(id),
-        checklistRepository.getAllByTripId(id),
-        reservationRepository.getAllByTripId(id),
-        noteRepository.getAllByTripId(id),
-      ])
-      const backup: TripBackup = {
-        version: 1,
-        exportedAt: new Date().toISOString(),
-        trip: activeTrip,
-        expenses,
-        budgetCategories,
-        itinerary,
-        checklist,
-        reservations,
-        notes,
-      }
+      const [expenses, budgetCategories, itinerary, checklist, reservations, notes, shoppingList] = await Promise.all([
+          expenseRepository.getAllByTripId(id),
+          budgetCategoryRepository.getAllByTripId(id),
+          itineraryRepository.getAllByTripId(id),
+          checklistRepository.getAllByTripId(id),
+          reservationRepository.getAllByTripId(id),
+          noteRepository.getAllByTripId(id),
+          shoppingRepository.getAllByTripId(id),
+        ])
+        const backup: TripBackup = {
+          version: 2,
+          exportedAt: new Date().toISOString(),
+          trip: activeTrip,
+          expenses,
+          budgetCategories,
+          itinerary,
+          checklist,
+          reservations,
+          notes,
+          shoppingList,
+        }
       exportTripData(backup)
     } finally {
       setExporting(false)
@@ -92,6 +95,7 @@ export default function BackupPage() {
       ...data.checklist.map((c) => checklistRepository.create({ ...c, id: remapId(c.id), tripId: newTripId })),
       ...data.reservations.map((r) => reservationRepository.create({ ...r, id: remapId(r.id), tripId: newTripId })),
       ...data.notes.map((n) => noteRepository.create({ ...n, id: remapId(n.id), tripId: newTripId })),
+      ...(data.shoppingList ?? []).map((s) => shoppingRepository.create({ ...s, id: remapId(s.id), tripId: newTripId })),
     ])
 
     await refreshTrips()
@@ -110,6 +114,7 @@ export default function BackupPage() {
     await checklistRepository.deleteAllByTripId(id)
     await reservationRepository.deleteAllByTripId(id)
     await noteRepository.deleteAllByTripId(id)
+    await shoppingRepository.deleteAllByTripId(id)
     setDeleteConfirm(false)
   }
 

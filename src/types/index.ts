@@ -165,9 +165,35 @@ export interface Note {
   updatedAt: string
 }
 
+// ─── Shopping List ────────────────────────────────────────────────────────────
+export type ShoppingCategory =
+  | 'Roupa e calçados'
+  | 'Farmácia'
+  | 'Higiene e beleza'
+  | 'Eletrônicos'
+  | 'Alimentos e bebidas'
+  | 'Documentos e viagem'
+  | 'Presentes e lembranças'
+  | 'Outros'
+
+export interface ShoppingItem {
+  id: string
+  tripId: string
+  name: string
+  category: ShoppingCategory
+  quantity: number
+  estimatedPrice: number   // R$
+  actualPrice: number      // R$, 0 = não preenchido
+  bought: boolean
+  priority: 'Alta' | 'Média' | 'Baixa'
+  notes: string
+  createdAt: string
+  updatedAt: string
+}
+
 // ─── Backup ───────────────────────────────────────────────────────────────────
 export interface TripBackup {
-  version: number          // currently 1
+  version: number          // currently 2
   exportedAt: string
   trip: Trip
   expenses: Expense[]
@@ -176,4 +202,5 @@ export interface TripBackup {
   checklist: ChecklistItem[]
   reservations: Reservation[]
   notes: Note[]
+  shoppingList: ShoppingItem[]
 }

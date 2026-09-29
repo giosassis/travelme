@@ -206,6 +206,7 @@ export default function MalaPage() {
 
       {id && (
         <ChecklistItemForm
+          key={editingItem?.id ?? 'novo'}
           open={formOpen}
           tripId={id}
           initialData={editingItem}

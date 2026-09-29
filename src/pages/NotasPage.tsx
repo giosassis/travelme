@@ -78,6 +78,7 @@ export default function NotasPage() {
 
       {id && (
         <NoteForm
+          key={editingNote?.id ?? 'novo'}
           open={formOpen}
           tripId={id}
           initialData={editingNote}

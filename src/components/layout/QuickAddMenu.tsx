@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom'
-import { X, DollarSign, Calendar, Luggage, BookOpen, FileText } from 'lucide-react'
+import { X, DollarSign, Calendar, Luggage, BookOpen, FileText, ShoppingBag } from 'lucide-react'
 
 interface Props {
   open: boolean
@@ -15,6 +15,7 @@ export function QuickAddMenu({ open, onClose }: Props) {
     { icon: DollarSign, label: 'Novo gasto', path: `${base}/gastos?novo=1`, disabled: !id },
     { icon: Calendar, label: 'Nova atividade', path: `${base}/roteiro?novo=1`, disabled: !id },
     { icon: Luggage, label: 'Item da mala', path: `${base}/mala?novo=1`, disabled: !id },
+    { icon: ShoppingBag, label: 'Item de compras', path: `${base}/mais/compras?novo=1`, disabled: !id },
     { icon: BookOpen, label: 'Nova reserva', path: `${base}/mais/reservas?novo=1`, disabled: !id },
     { icon: FileText, label: 'Nova nota', path: `${base}/mais/notas?novo=1`, disabled: !id },
   ]

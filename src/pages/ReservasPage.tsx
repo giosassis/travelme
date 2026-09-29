@@ -111,6 +111,7 @@ export default function ReservasPage() {
 
       {id && (
         <ReservationForm
+          key={editingItem?.id ?? 'novo'}
           open={formOpen}
           tripId={id}
           initialData={editingItem}

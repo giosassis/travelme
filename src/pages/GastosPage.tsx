@@ -157,6 +157,7 @@ export default function GastosPage() {
 
       {id && (
         <ExpenseForm
+          key={editingExpense?.id ?? 'novo'}
           open={formOpen}
           tripId={id}
           initialData={editingExpense}

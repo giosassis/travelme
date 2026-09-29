@@ -12,6 +12,7 @@ import NotasPage from '@/pages/NotasPage'
 import BackupPage from '@/pages/BackupPage'
 import ConfiguracoesPage from '@/pages/ConfiguracoesPage'
 import MapaPage from '@/pages/MapaPage'
+import ComprasPage from '@/pages/ComprasPage'
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="viagem/:id/mais/backup" element={<BackupPage />} />
             <Route path="viagem/:id/mais/configuracoes" element={<ConfiguracoesPage />} />
             <Route path="viagem/:id/mais/mapa" element={<MapaPage />} />
+            <Route path="viagem/:id/mais/compras" element={<ComprasPage />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

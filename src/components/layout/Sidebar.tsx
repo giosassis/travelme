@@ -1,5 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom'
-import { Home, Calendar, DollarSign, Luggage, MoreHorizontal, MapPin, Map } from 'lucide-react'
+import { Home, Calendar, DollarSign, Luggage, MoreHorizontal, MapPin, Map, ShoppingBag } from 'lucide-react'
 import { useTripContext } from '@/contexts/TripContext'
 import { cn } from '@/lib/utils'
 
@@ -13,6 +13,7 @@ export function Sidebar() {
     { to: `${base}/roteiro`, icon: Calendar, label: 'Roteiro', disabled: !id },
     { to: `${base}/gastos`, icon: DollarSign, label: 'Gastos', disabled: !id },
     { to: `${base}/mala`, icon: Luggage, label: 'Mala', disabled: !id },
+    { to: `${base}/mais/compras`, icon: ShoppingBag, label: 'Compras', disabled: !id },
     { to: `${base}/mais/mapa`, icon: Map, label: 'Mapa', disabled: !id },
     { to: `${base}/mais`, icon: MoreHorizontal, label: 'Mais', disabled: !id },
   ]
