@@ -1,4 +1,5 @@
 import { getDB } from './db'
+
 import type { Expense } from '@/types'
 
 export const expenseRepository = {
